@@ -9,11 +9,11 @@
 - Shape and deployment: one file, `pcie_check.py`, compatible with Python 3.9 (oldest seen on test servers); copied by `git clone`, `scp`, or USB.
 
 ## Sections
-### 1. Setup  [ ] not started
+### 1. Setup  [~] in progress
 **Deliverable:** `python3 pcie_check.py` prints a line, and the project is committed and pushed to GitHub.
 **Concepts:** running-a-python-script, git-init, git-commit, git-push, github-repo
 - [x] 1.1 Create `pcie_check.py` and run it — it prints one line in your terminal
-- [ ] 1.2 Turn the folder into a Git repository and make your first commit
+- [x] 1.2 Turn the folder into a Git repository and make your first commit
 - [ ] 1.3 Create the GitHub repo and push your first commit to it
 - [ ] 1.4 The daily loop: change the script, commit, push — see it on GitHub
 

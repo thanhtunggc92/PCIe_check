@@ -9,3 +9,7 @@
 - learning/plan.md — known (2026-10-26) — the build plan and locked decisions
 - learning/knowledge-graph.md — known (2026-10-26) — the living map of what you actually know
 - learning/file-map.md — known (2026-10-26) — this file: why every file in the repo exists
+- .git/ — generated (2026-10-26) — hidden folder where Git stores every commit; this is what makes the folder a repo. Never edit by hand → [[git-init]]
+
+<!-- Outside the project: ../git-practice/ is a throwaway Git practice repo, not part of this project. -->
+

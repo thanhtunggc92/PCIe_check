@@ -95,18 +95,18 @@
 - evidence: wrote `print(...)` unprompted (in learning/, moved it to project root). Predicted that running from `learning/` fails because the file isn't there; ran it, saw the "can't open file" error, then ran from project root. Edited the print text and re-ran.
 
 ## git-init
-- status: seed
+- status: practicing
 - depends-on: terminal-commands
-- introduced: —
-- last-reviewed: —
-- evidence: —
+- introduced: 2026-10-26
+- last-reviewed: 2026-10-26
+- evidence: said Git was used long ago, needs relearning. Set global user.name/email/defaultBranch. Ran `git init` in a practice folder and in the project; predicted correctly that all project files would be untracked before `git add`. Renamed `master` → `main` with `git branch -m main`.
 
 ## git-commit
-- status: seed
+- status: practicing
 - depends-on: git-init
-- introduced: —
-- last-reviewed: —
-- evidence: —
+- introduced: 2026-10-26
+- last-reviewed: 2026-10-26
+- evidence: predicted commit would push to GitHub (wrong; corrected: commit is local, push needs a remote). Hit "pathspec" error from missing `-m`, fixed it after a pointer to the example. Made two practice commits, read `git log --oneline`. Chose to commit `learning/` publicly ("people will understand my process"). Made first project commit c2159f5. Forward check: correctly said the commit would be lost if the disk died because it lives only on the laptop.
 
 ## git-push
 - status: seed
