@@ -9,17 +9,21 @@
 - Shape and deployment: one file, `pcie_check.py`, compatible with Python 3.9 (oldest seen on test servers); copied by `git clone`, `scp`, or USB.
 
 ## Sections
-### 1. Setup  [~] in progress
+### 1. Setup  [x] done
 **Deliverable:** `python3 pcie_check.py` prints a line, and the project is committed and pushed to GitHub.
 **Concepts:** running-a-python-script, git-init, git-commit, git-push, github-repo
 - [x] 1.1 Create `pcie_check.py` and run it — it prints one line in your terminal
 - [x] 1.2 Turn the folder into a Git repository and make your first commit
-- [ ] 1.3 Create the GitHub repo and push your first commit to it
-- [ ] 1.4 The daily loop: change the script, commit, push — see it on GitHub
+- [x] 1.3 Create the GitHub repo and push your first commit to it
+- [x] 1.4 The daily loop: change the script, commit, push — see it on GitHub
 
-### 2. Reading your input  [ ] not started
+### 2. Reading your input  [ ] in progress
 **Deliverable:** `python3 pcie_check.py nvme` prints `Checking: nvme`, and `--help` shows usage.
 **Concepts:** variables, strings, functions, argparse, main-guard
+- [x] 2.1 Variables and strings: the script keeps the component name in a variable and prints `Checking: nvme` from it
+- [ ] 2.2 Functions: move the printing into a `main()` function and call it — output unchanged
+- [ ] 2.3 argparse: read the component name from the command line — `python3 pcie_check.py nvme` prints `Checking: nvme`
+- [ ] 2.4 `--help` and the main guard: add help text, protect `main()` with `if __name__ == "__main__":`, commit and push
 
 ### 3. Running lspci from Python  [ ] not started
 **Deliverable:** `python3 pcie_check.py ethernet` prints the matching lspci lines.

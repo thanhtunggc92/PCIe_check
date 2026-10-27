@@ -60,11 +60,11 @@
 - evidence: decision 4 — saving real lspci output to test FAIL paths.
 
 ## github-repo
-- status: introduced
+- status: practicing
 - depends-on: git-commit
 - introduced: 2026-10-26
 - last-reviewed: 2026-10-26
-- evidence: correctly reasoned: clone where servers have internet, USB where not.
+- evidence: correctly reasoned: clone where servers have internet, USB where not. Created PCIe_check on GitHub and pushed to it on their own; checked that pcie_check.py on GitHub matched the laptop after pushing 7fbde41.
 
 ## copying-to-servers
 - status: introduced
@@ -106,28 +106,49 @@
 - depends-on: git-init
 - introduced: 2026-10-26
 - last-reviewed: 2026-10-26
-- evidence: predicted commit would push to GitHub (wrong; corrected: commit is local, push needs a remote). Hit "pathspec" error from missing `-m`, fixed it after a pointer to the example. Made two practice commits, read `git log --oneline`. Chose to commit `learning/` publicly ("people will understand my process"). Made first project commit c2159f5. Forward check: correctly said the commit would be lost if the disk died because it lives only on the laptop.
+- evidence: predicted commit would push to GitHub (wrong; corrected: commit is local, push needs a remote). Hit "pathspec" error from missing `-m`, fixed it after a pointer to the example. Made two practice commits, read `git log --oneline`. Chose to commit `learning/` publicly ("people will understand my process"). Made first project commit c2159f5. Forward check: correctly said the commit would be lost if the disk died because it lives only on the laptop. 2026-10-26 (lesson 1.4): staged and committed 4 files as 7fbde41 with their own message ("second commit"; tip given to describe the change).
 
 ## git-push
-- status: seed
-- depends-on: git-commit, github-repo
-- introduced: —
-- last-reviewed: —
-- evidence: —
+- status: understood
+- depends-on: git-commit, git-remote
+- introduced: 2026-10-26
+- last-reviewed: 2026-10-26
+- evidence: self-reported prior knowledge. Did 1.3 on their own (`git push -u origin main`). Own explanation: push copies the project to GitHub so it survives a dead laptop — did not say "commits only". Drill: pushed git-practice to a local bare repo; predicted correctly that an uncommitted edit would not be pushed ("Everything up-to-date"). Pushed 7fbde41 and checked the file on GitHub.
+
+## git-remote
+- status: practicing
+- depends-on: git-init
+- introduced: 2026-10-26
+- last-reviewed: 2026-10-26
+- evidence: listed init → add → commit → push without the `git remote add` step. When asked what a push from a fresh repo would do, said Git would read `origin` as master/main (confused remote with branch); corrected. Then ran `git remote add origin ../fake-github.git` and pushed in the drill.
+
+## git-status
+- status: introduced
+- depends-on: git-commit
+- introduced: 2026-10-26
+- last-reviewed: 2026-10-26
+- evidence: predicted every tracked file would show as modified (wrong); then guessed project.md was missing because it is "hidden" (wrong). Corrected: modified = changed since last commit.
 
 ## variables
-- status: seed
+- status: understood
 - depends-on: running-a-python-script
-- introduced: —
-- last-reviewed: —
-- evidence: —
+- introduced: 2026-10-26
+- last-reviewed: 2026-10-26
+- evidence: self-reported prior knowledge ("used them before, small Python projects"). Drill (scratch/variables.py): stored bus/device/function in variables and joined them. Lesson 2.1: first named the variable after its value (`NVMe`); after two nudges renamed it to `Componet`, describing its job.
 
 ## strings
-- status: seed
+- status: understood
 - depends-on: variables
-- introduced: —
-- last-reviewed: —
-- evidence: —
+- introduced: 2026-10-26
+- last-reviewed: 2026-10-26
+- evidence: self-reported prior knowledge. Drill: joined strings with `+`, first wrote `:` where `.` was needed, spotted and fixed it; predicted `len()` = 7 correctly. Predicted `Checking: nvme` correctly before running pcie_check.py.
+
+## keyboard-input
+- status: practicing
+- depends-on: variables, strings
+- introduced: 2026-10-26
+- last-reviewed: 2026-10-26
+- evidence: switched pcie_check.py to `input()` on their own in lesson 2.1; ran it and typed `nvme`. To be replaced by argparse in 2.3.
 
 ## functions
 - status: seed
@@ -158,11 +179,11 @@
 - evidence: —
 
 ## case-insensitive-matching
-- status: seed
+- status: practicing
 - depends-on: strings
-- introduced: —
-- last-reviewed: —
-- evidence: —
+- introduced: 2026-10-26
+- last-reviewed: 2026-10-26
+- evidence: added `.lower()` to the printed name on their own in lesson 2.1 (normalising "NVMe" → "nvme"). Not yet used for matching; that's section 3.
 
 ## splitting-strings
 - status: seed
@@ -228,11 +249,11 @@
 - evidence: —
 
 ## f-strings
-- status: seed
+- status: practicing
 - depends-on: strings
-- introduced: —
-- last-reviewed: —
-- evidence: —
+- introduced: 2026-10-26
+- last-reviewed: 2026-10-26
+- evidence: wrote `print(f"Checking: {...}")` unprompted in lesson 2.1, ahead of section 7; worked first time.
 
 ## exit-codes
 - status: seed
