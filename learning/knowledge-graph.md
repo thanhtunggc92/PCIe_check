@@ -39,11 +39,11 @@
 - evidence: decision 2. Thought logic carries the load; corrected — choosing lspci shifts work to parsing text. Revisit in section 3.
 
 ## argparse
-- status: introduced
+- status: practicing
 - depends-on: standard-library, strings
 - introduced: 2026-10-26
-- last-reviewed: 2026-10-26
-- evidence: decision 3. Answered a scope question instead of the forward check; explained how argparse makes multi-name input cheap. Revisit in section 2.
+- last-reviewed: 2026-10-27
+- evidence: decision 3. Answered a scope question instead of the forward check; explained how argparse makes multi-name input cheap. 2026-10-27 (lesson 2.3): said they had never used it. Drill 1 (scratch/argparse_drill.py): one positional + `.upper()`, predicted output correctly (named the arg `component` though it held a bus ID). Drill 2 (scratch/argparse_link.py): two positionals; predicted correctly that leaving one out gives an error about the missing one. Project: wrote `import argparse` and the parser/add_argument/parse_args lines in `main()` themselves, replacing `input()`; ran `python3 pcie_check.py nvme` → `Checking: nvme`. Predicted correctly that two words give an error ("unrecognized arguments"). Names the parser `parse` (tip: `parser`). 2026-10-27 (lesson 2.4): said "not sure" what `--help` would print. Added `description=` and `help=` (with examples nvme, mellanox) themselves; ran `--help` and saw both.
 
 ## pytest
 - status: introduced
@@ -148,21 +148,28 @@
 - depends-on: variables, strings
 - introduced: 2026-10-26
 - last-reviewed: 2026-10-26
-- evidence: switched pcie_check.py to `input()` on their own in lesson 2.1; ran it and typed `nvme`. To be replaced by argparse in 2.3.
+- evidence: switched pcie_check.py to `input()` on their own in lesson 2.1; ran it and typed `nvme`. Replaced by argparse in 2.3 (2026-10-27); no longer in the script.
 
 ## functions
-- status: seed
+- status: understood
 - depends-on: variables
-- introduced: —
-- last-reviewed: —
-- evidence: —
+- introduced: 2026-10-27
+- last-reviewed: 2026-10-27
+- evidence: self-reported prior knowledge ("used function before on my old script"). Drill (scratch/functions.py): wrote `slot_num(n)` and called it with 3 values — worked; stored the calls in variables (holds None — return values come in section 4). Lesson 2.2: wrote `def main():`, indented the body, added the `main()` call; typed under the TODO markers instead of replacing them, removed them when asked. Predicted correctly that deleting `main()` would print nothing because the function is never called.
 
 ## main-guard
-- status: seed
+- status: practicing
 - depends-on: functions
-- introduced: —
-- last-reviewed: —
-- evidence: —
+- introduced: 2026-10-27
+- last-reviewed: 2026-10-27
+- evidence: said it was new. Drill 1 (scratch/main-guard.py): first printed `"__name__"` in quotes (text, not the value); then assigned `__name__="nvme"` and saw the guard go false — could not say why, walked through it. Fixed it; predicted `__name__` + "Fan check" correctly. Drill 2 (fan_tools.py + run_fans.py): predicted `__main__` + "Fan check" on import (wrong, got `fan_tools`); then explained in own words: imported, not run directly, so `__name__` isn't `__main__` and the function isn't called. Project: wrapped `main()` in `if __name__ == "__main__":` themselves; predicted correctly that `import pcie_check` prints nothing.
+
+## gitignore
+- status: introduced
+- depends-on: git-status
+- introduced: 2026-10-27
+- last-reviewed: 2026-10-27
+- evidence: tutor dictated `.gitignore` with `__pycache__/`; learner created it and saw both `__pycache__/` folders drop out of `git status`.
 
 ## lists
 - status: seed
@@ -260,7 +267,7 @@
 - depends-on: running-a-python-script
 - introduced: —
 - last-reviewed: —
-- evidence: —
+- evidence: 2026-10-27: tutor glossed it when argparse's missing-argument error exited with code 2. Not taught; comes due in section 7.
 
 ## exceptions
 - status: seed

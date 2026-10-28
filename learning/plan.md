@@ -17,13 +17,13 @@
 - [x] 1.3 Create the GitHub repo and push your first commit to it
 - [x] 1.4 The daily loop: change the script, commit, push — see it on GitHub
 
-### 2. Reading your input  [ ] in progress
+### 2. Reading your input  [x] done
 **Deliverable:** `python3 pcie_check.py nvme` prints `Checking: nvme`, and `--help` shows usage.
 **Concepts:** variables, strings, functions, argparse, main-guard
 - [x] 2.1 Variables and strings: the script keeps the component name in a variable and prints `Checking: nvme` from it
-- [ ] 2.2 Functions: move the printing into a `main()` function and call it — output unchanged
-- [ ] 2.3 argparse: read the component name from the command line — `python3 pcie_check.py nvme` prints `Checking: nvme`
-- [ ] 2.4 `--help` and the main guard: add help text, protect `main()` with `if __name__ == "__main__":`, commit and push
+- [x] 2.2 Functions: move the printing into a `main()` function and call it — output unchanged
+- [x] 2.3 argparse: read the component name from the command line — `python3 pcie_check.py nvme` prints `Checking: nvme`
+- [x] 2.4 `--help` and the main guard: add help text, protect `main()` with `if __name__ == "__main__":`, commit and push
 
 ### 3. Running lspci from Python  [ ] not started
 **Deliverable:** `python3 pcie_check.py ethernet` prints the matching lspci lines.
