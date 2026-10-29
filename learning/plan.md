@@ -28,6 +28,10 @@
 ### 3. Running lspci from Python  [ ] not started
 **Deliverable:** `python3 pcie_check.py ethernet` prints the matching lspci lines.
 **Concepts:** subprocess, lists, for-loops, case-insensitive-matching
+- [x] 3.1 subprocess: the script runs `lspci` itself and prints its whole output after `Checking: nvme`
+- [x] 3.2 lists: split that output into a list of lines and print how many devices lspci found
+- [x] 3.3 for-loops: walk the lines and print only the ones that contain the component name
+- [ ] 3.4 case-insensitive matching: `nvme` also finds the `NVMe` lines; commit and push
 
 ### 4. Pulling out bus IDs  [ ] not started
 **Deliverable:** the script prints just the bus IDs (`17:00.0`, `17:00.1`, ...).

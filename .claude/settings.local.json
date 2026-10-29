@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(lspci)",
+      "Bash(python3 pcie_check.py bridge)",
+      "Bash(python3 pcie_check.py micron)",
+      "Bash(python3 pcie_check.py MICRON)"
+    ]
+  }
+}

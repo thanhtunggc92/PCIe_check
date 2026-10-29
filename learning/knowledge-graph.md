@@ -32,11 +32,11 @@
 - evidence: explained as part of decision 1.
 
 ## subprocess
-- status: introduced
+- status: practicing
 - depends-on: standard-library, terminal-commands
 - introduced: 2026-10-26
-- last-reviewed: 2026-10-26
-- evidence: decision 2. Thought logic carries the load; corrected — choosing lspci shifts work to parsing text. Revisit in section 3.
+- last-reviewed: 2026-10-28
+- evidence: decision 2. Thought logic carries the load; corrected — choosing lspci shifts work to parsing text. Lesson 3.1 (2026-10-27/28): wrote `import subprocess` and `subprocess.run([...], capture_output=True, text=True)` + `print(.stdout)` themselves; first put a shell pipe in the list (`"lspci","|","grep",...`) → empty stdout. Printed `.stderr` when asked and saw lspci's usage text; told the pipe is a shell feature. Fixed to `["lspci"]`, predicted correctly it prints the lspci output. Forward check (remove capture_output): said "same output as before" — half right (screen shows the list, but missed that `.stdout` becomes None).
 
 ## argparse
 - status: practicing
@@ -171,33 +171,40 @@
 - last-reviewed: 2026-10-27
 - evidence: tutor dictated `.gitignore` with `__pycache__/`; learner created it and saw both `__pycache__/` folders drop out of `git status`.
 
+## stdout-stderr
+- status: introduced
+- depends-on: subprocess
+- introduced: 2026-10-27
+- last-reviewed: 2026-10-27
+- evidence: lesson 3.1: tutor explained the two output streams; learner printed `.stderr` and read lspci's usage text from it.
+
 ## lists
-- status: seed
+- status: understood
 - depends-on: variables
-- introduced: —
-- last-reviewed: —
-- evidence: —
+- introduced: 2026-10-29
+- last-reviewed: 2026-10-29
+- evidence: self-reported prior knowledge ("not new on using the list"). Drill (scratch/lists.py): list of 4 fan speeds (as strings), printed `RPM[0]`, `RPM[-1]`, `len(RPM)`; prediction held. Lesson 3.2: wrote `devices = command.stdout.splitlines()` + `print(devices)` + `print(len(devices))` themselves; predicted correctly that the list prints as separate items instead of one text block (22 devices). Forward check: said empty lspci output would give `None` (wrong — `[]` and `0`; shown and explained).
 
 ## for-loops
-- status: seed
+- status: understood
 - depends-on: lists
-- introduced: —
-- last-reviewed: —
-- evidence: —
+- introduced: 2026-10-29
+- last-reviewed: 2026-10-29
+- evidence: self-reported prior knowledge ("also not new on a for loop"). Drill (scratch/for-loops.py): looped over 3 temperature readings, printed one line each; predicted "one element per line" correctly. Lesson 3.3: replaced the TODO with `for c in devices:` + `if` + indented `print(c)` themselves. Forward check: said correctly that an empty list makes the loop print nothing.
 
 ## case-insensitive-matching
 - status: practicing
 - depends-on: strings
 - introduced: 2026-10-26
 - last-reviewed: 2026-10-26
-- evidence: added `.lower()` to the printed name on their own in lesson 2.1 (normalising "NVMe" → "nvme"). Not yet used for matching; that's section 3.
+- evidence: added `.lower()` to the printed name on their own in lesson 2.1 (normalising "NVMe" → "nvme"). 2026-10-29 (lesson 3.3): unprompted, lowercased both sides of the match (`args.component.lower() in c.lower()`). Not yet tested against uppercase lines (`nvme` vs `NVMe`); that's 3.4.
 
 ## splitting-strings
-- status: seed
+- status: introduced
 - depends-on: strings, lists
-- introduced: —
-- last-reviewed: —
-- evidence: —
+- introduced: 2026-10-29
+- last-reviewed: 2026-10-29
+- evidence: lesson 3.2: tutor named `.splitlines()` (cuts text at line breaks, returns a list); learner used it on `command.stdout`. Full teaching (`.split()`) still due in section 4.
 
 ## building-lists
 - status: seed
@@ -235,18 +242,18 @@
 - evidence: —
 
 ## substring-search
-- status: seed
+- status: introduced
 - depends-on: strings
-- introduced: —
-- last-reviewed: —
-- evidence: —
+- introduced: 2026-10-29
+- last-reviewed: 2026-10-29
+- evidence: lesson 3.3: tutor dictated `if ... in line:`; learner wrote `==` instead. Predicted the bridge lines would print (wrong — nothing printed); when asked why, gave an unclear answer. Tutor explained `==` = whole line equals vs `in` = appears inside; learner switched to `in` and saw the 5 bridge lines. Full teaching in section 6.
 
 ## if-else
-- status: seed
+- status: introduced
 - depends-on: booleans
-- introduced: —
-- last-reviewed: —
-- evidence: —
+- introduced: 2026-10-29
+- last-reviewed: 2026-10-29
+- evidence: lesson 3.3: tutor dictated a one-line `if` (glossed: runs the indented lines only when true); learner indented the `print` under it correctly. Not taught yet; section 6.
 
 ## booleans
 - status: seed
