@@ -106,7 +106,7 @@
 - depends-on: git-init
 - introduced: 2026-10-26
 - last-reviewed: 2026-10-26
-- evidence: predicted commit would push to GitHub (wrong; corrected: commit is local, push needs a remote). Hit "pathspec" error from missing `-m`, fixed it after a pointer to the example. Made two practice commits, read `git log --oneline`. Chose to commit `learning/` publicly ("people will understand my process"). Made first project commit c2159f5. Forward check: correctly said the commit would be lost if the disk died because it lives only on the laptop. 2026-10-26 (lesson 1.4): staged and committed 4 files as 7fbde41 with their own message ("second commit"; tip given to describe the change).
+- evidence: predicted commit would push to GitHub (wrong; corrected: commit is local, push needs a remote). Hit "pathspec" error from missing `-m`, fixed it after a pointer to the example. Made two practice commits, read `git log --oneline`. Chose to commit `learning/` publicly ("people will understand my process"). Made first project commit c2159f5. Forward check: correctly said the commit would be lost if the disk died because it lives only on the laptop. 2026-10-26 (lesson 1.4): staged and committed 4 files as 7fbde41 with their own message ("second commit"; tip given to describe the change). 2026-10-29 (lesson 3.4): unprompted, committed 7 files as 2b5422a with a descriptive message ("print out the component output"), pushed, and showed `git status` as clean. Included `.claude/settings.local.json` without checking what it was.
 
 ## git-push
 - status: understood
@@ -120,7 +120,7 @@
 - depends-on: git-init
 - introduced: 2026-10-26
 - last-reviewed: 2026-10-26
-- evidence: listed init → add → commit → push without the `git remote add` step. When asked what a push from a fresh repo would do, said Git would read `origin` as master/main (confused remote with branch); corrected. Then ran `git remote add origin ../fake-github.git` and pushed in the drill.
+- evidence: 2026-10-29: pushed 2b5422a to origin on their own (`018dd34..2b5422a main -> main`). Earlier: listed init → add → commit → push without the `git remote add` step. When asked what a push from a fresh repo would do, said Git would read `origin` as master/main (confused remote with branch); corrected. Then ran `git remote add origin ../fake-github.git` and pushed in the drill.
 
 ## git-status
 - status: introduced
@@ -196,29 +196,29 @@
 - status: practicing
 - depends-on: strings
 - introduced: 2026-10-26
-- last-reviewed: 2026-10-26
-- evidence: added `.lower()` to the printed name on their own in lesson 2.1 (normalising "NVMe" → "nvme"). 2026-10-29 (lesson 3.3): unprompted, lowercased both sides of the match (`args.component.lower() in c.lower()`). Not yet tested against uppercase lines (`nvme` vs `NVMe`); that's 3.4.
+- last-reviewed: 2026-10-29
+- evidence: added `.lower()` to the printed name on their own in lesson 2.1 (normalising "NVMe" → "nvme"). 2026-10-29 (lesson 3.3): unprompted, lowercased both sides of the match (`args.component.lower() in c.lower()`). 2026-10-29 (lesson 3.4): broke it on purpose — removed `.lower()` from the line side themselves and predicted correctly that `micron` would match nothing (line says `Micron`); restored it and saw the drive line. The why (m ≠ M) was explained by the tutor, not in their own words yet.
 
 ## splitting-strings
-- status: introduced
+- status: practicing
 - depends-on: strings, lists
 - introduced: 2026-10-29
 - last-reviewed: 2026-10-29
-- evidence: lesson 3.2: tutor named `.splitlines()` (cuts text at line breaks, returns a list); learner used it on `command.stdout`. Full teaching (`.split()`) still due in section 4.
+- evidence: lesson 3.2: tutor named `.splitlines()` (cuts text at line breaks, returns a list); learner used it on `command.stdout`. Lesson 4.1 (2026-10-29): said they had used `.split()` "before but not much". Drill (scratch/splitting-strings.py): split `"Fan2 RPM 5400 ok"` with `.split(" ")`, printed `len(...)` and `[2]`; predicted 4 and the index-2 item correctly. Project: wrote `split_device = c.split()` + `print(split_device[0])` themselves; predicted correctly that `bridge` prints the 5 bus IDs. Forward check (`[1]` on `00:00.0 Host bridge: ...`): said "the next item, the other part" — right idea, not specific; told it is just `Host` because split cuts at every space. Typed under the TODO marker again instead of replacing it.
 
 ## building-lists
-- status: seed
+- status: understood
 - depends-on: lists, for-loops
-- introduced: —
-- last-reviewed: —
-- evidence: —
+- introduced: 2026-10-29
+- last-reviewed: 2026-10-29
+- evidence: self-reported prior knowledge ("I knew them before"). Drill (scratch/building-lists.py): empty list + `.append()` in a loop over 3 fan names, first used `.title()` and left out the count; fixed both to `.upper()` + `len()`, predicted "all in capitals and 3" correctly. Lesson 4.2: wrote `bus_ID=[]` above the loop, `bus_ID.append(split_device[0])` inside the `if`, and both prints after the loop themselves; predicted correctly that `bridge` gives a list of 5 IDs and `5`. Forward check (empty list moved inside the loop): said it resets every pass so the list ends empty. Right mechanism, but missed that the last pass can leave one item.
 
 ## return-values
-- status: seed
+- status: understood
 - depends-on: functions
-- introduced: —
-- last-reviewed: —
-- evidence: —
+- introduced: 2026-10-29
+- last-reviewed: 2026-10-29
+- evidence: self-reported prior knowledge ("I used the return in a function before"). Asked for a clearer drill spec. Drill (scratch/return-values.py): `link_width(current, max)` returns the percentage, caller stores and prints it; predicted `50.0 %` exactly. Lesson 4.3: wrote the body of `find_bus_ids(component, lines)` (moved the loop, switched to `lines`, `return bus_ID`) and the call `bus_ID = find_bus_ids(args.component.lower(), devices)` themselves; typed under the second TODO marker and deleted the two prints, fixed both when pointed out. Predicted the unchanged `bridge` output (5 IDs, 5) correctly. Forward check (delete `return`): said everything shows None. Half right: `bus_ID` is None and prints None, but `len(None)` crashes with TypeError (shown). Note: the function only lowercases the line side; it relies on the caller lowercasing `component`.
 
 ## virtual-environment
 - status: seed
@@ -242,11 +242,11 @@
 - evidence: —
 
 ## substring-search
-- status: introduced
+- status: practicing
 - depends-on: strings
 - introduced: 2026-10-29
 - last-reviewed: 2026-10-29
-- evidence: lesson 3.3: tutor dictated `if ... in line:`; learner wrote `==` instead. Predicted the bridge lines would print (wrong — nothing printed); when asked why, gave an unclear answer. Tutor explained `==` = whole line equals vs `in` = appears inside; learner switched to `in` and saw the 5 bridge lines. Full teaching in section 6.
+- evidence: lesson 3.3: tutor dictated `if ... in line:`; learner wrote `==` instead. Predicted the bridge lines would print (wrong — nothing printed); when asked why, gave an unclear answer. Tutor explained `==` = whole line equals vs `in` = appears inside; learner switched to `in` and saw the 5 bridge lines. Lesson 3.4: predicted `nvme` prints no device line (right, but thought the laptop had no NVMe drive). Shown the `Non-Volatile memory controller` line, explained in own words: the script only prints lines containing the text `nvme`, and this line doesn't contain it. Full teaching in section 6.
 
 ## if-else
 - status: introduced

@@ -25,17 +25,21 @@
 - [x] 2.3 argparse: read the component name from the command line — `python3 pcie_check.py nvme` prints `Checking: nvme`
 - [x] 2.4 `--help` and the main guard: add help text, protect `main()` with `if __name__ == "__main__":`, commit and push
 
-### 3. Running lspci from Python  [ ] not started
+### 3. Running lspci from Python  [x] done
 **Deliverable:** `python3 pcie_check.py ethernet` prints the matching lspci lines.
 **Concepts:** subprocess, lists, for-loops, case-insensitive-matching
 - [x] 3.1 subprocess: the script runs `lspci` itself and prints its whole output after `Checking: nvme`
 - [x] 3.2 lists: split that output into a list of lines and print how many devices lspci found
 - [x] 3.3 for-loops: walk the lines and print only the ones that contain the component name
-- [ ] 3.4 case-insensitive matching: `nvme` also finds the `NVMe` lines; commit and push
+- [x] 3.4 case-insensitive matching: `nvme` also finds the `NVMe` lines; commit and push
 
 ### 4. Pulling out bus IDs  [ ] not started
 **Deliverable:** the script prints just the bus IDs (`17:00.0`, `17:00.1`, ...).
 **Concepts:** splitting-strings, building-lists, return-values
+- [x] 4.1 splitting strings: for each matching line, print only its first piece — the bus ID (`17:00.0`) — instead of the whole line
+- [x] 4.2 building lists: collect those bus IDs into a list, then print the list and how many were found
+- [x] 4.3 return values: move the matching into a function that takes the component name and the lines and returns the list of bus IDs; `main()` prints it, output unchanged
+- [ ] 4.4 commit and push section 4
 
 ### 5. Your first tests  [ ] not started
 **Deliverable:** `pytest` checks the bus-ID code against saved sample files, all green.

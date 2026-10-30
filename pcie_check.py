@@ -1,6 +1,15 @@
 import argparse
 import subprocess
 
+def find_bus_ids(component, lines):
+    bus_ID=[]
+    for c in lines:
+            if  component in c.lower():
+    
+                line= c.split()
+                
+                bus_ID.append(line[0])
+    return bus_ID
 def main():
     print("PCIe link check")
     
@@ -16,8 +25,11 @@ def main():
     devices= command.stdout.splitlines()
     # print(devices)
     # print(len(devices))
-    for c in devices:
-        if args.component.lower() in c.lower():
-            print(c)
+
+    
+    bus_ID = find_bus_ids(args.component.lower(),devices)
+    print(bus_ID)
+    print(len(bus_ID))
+    
 if __name__ == "__main__":
     main()
