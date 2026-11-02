@@ -33,17 +33,22 @@
 - [x] 3.3 for-loops: walk the lines and print only the ones that contain the component name
 - [x] 3.4 case-insensitive matching: `nvme` also finds the `NVMe` lines; commit and push
 
-### 4. Pulling out bus IDs  [ ] not started
+### 4. Pulling out bus IDs  [x] done
 **Deliverable:** the script prints just the bus IDs (`17:00.0`, `17:00.1`, ...).
 **Concepts:** splitting-strings, building-lists, return-values
 - [x] 4.1 splitting strings: for each matching line, print only its first piece — the bus ID (`17:00.0`) — instead of the whole line
 - [x] 4.2 building lists: collect those bus IDs into a list, then print the list and how many were found
 - [x] 4.3 return values: move the matching into a function that takes the component name and the lines and returns the list of bus IDs; `main()` prints it, output unchanged
-- [ ] 4.4 commit and push section 4
+- [x] 4.4 commit and push section 4
 
-### 5. Your first tests  [ ] not started
+### 5. Your first tests  [x] done
 **Deliverable:** `pytest` checks the bus-ID code against saved sample files, all green.
 **Concepts:** virtual-environment, pytest, test-files, sample-data
+- [x] 5.1 virtual environment: create `.venv`, activate it, and see `python` point inside the project; keep `.venv/` out of Git
+- [x] 5.2 install pytest into the venv; `pytest` runs and reports that it found no tests
+- [x] 5.3 sample data: save a real `lspci` output into a sample file in the project
+- [x] 5.4 first test: a test file feeds the sample's lines to `find_bus_ids` and checks the bus IDs; `pytest` is green
+- [x] 5.5 break a test on purpose, read pytest's failure report, fix it; commit and push section 5
 
 ### 6. Reading link status  [ ] not started
 **Deliverable:** each device prints PASS or FAIL, including width-only downgrades, with tests for the five sample cases.

@@ -4,7 +4,11 @@
       "Bash(lspci)",
       "Bash(python3 pcie_check.py bridge)",
       "Bash(python3 pcie_check.py micron)",
-      "Bash(python3 pcie_check.py MICRON)"
+      "Bash(python3 pcie_check.py MICRON)",
+      "Bash(python3 -c \"import ensurepip, venv; print\\('ok'\\)\")",
+      "Bash(dpkg -l)",
+      "Bash(awk '{print $1,$2}')",
+      "Bash(python3 -c ' *)"
     ]
   }
 }

@@ -1,0 +1,3 @@
+CPU 44
+DIMM 54
+GPU 55

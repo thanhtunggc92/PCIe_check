@@ -46,18 +46,32 @@
 - evidence: decision 3. Answered a scope question instead of the forward check; explained how argparse makes multi-name input cheap. 2026-10-27 (lesson 2.3): said they had never used it. Drill 1 (scratch/argparse_drill.py): one positional + `.upper()`, predicted output correctly (named the arg `component` though it held a bus ID). Drill 2 (scratch/argparse_link.py): two positionals; predicted correctly that leaving one out gives an error about the missing one. Project: wrote `import argparse` and the parser/add_argument/parse_args lines in `main()` themselves, replacing `input()`; ran `python3 pcie_check.py nvme` → `Checking: nvme`. Predicted correctly that two words give an error ("unrecognized arguments"). Names the parser `parse` (tip: `parser`). 2026-10-27 (lesson 2.4): said "not sure" what `--help` would print. Added `description=` and `help=` (with examples nvme, mellanox) themselves; ran `--help` and saw both.
 
 ## pytest
-- status: introduced
-- depends-on: functions, virtual-environment
+- status: practicing
+- depends-on: functions, virtual-environment, pip-install
 - introduced: 2026-10-26
-- last-reviewed: 2026-10-26
-- evidence: decision 4. Could not name sample cases unaided; given six cases.
+- last-reviewed: 2026-11-02
+- evidence: 2026-11-02 (lesson 5.5): ran `pytest` on scratch and project files themselves through three failures and a green run → [[pytest-failure-report]]. 2026-10-30 (lesson 5.4): ran `pytest <file>` on a scratch file and on test_pcie_check.py themselves; read `collected`, the `.` per passing test and the `passed` summary. decision 4. Could not name sample cases unaided; given six cases. 2026-10-30 (lesson 5.2): ran `pip install pytest` in the active venv themselves (pytest 9.2.0 + 7 dependencies). Said "no idea" what `pytest` would print with no tests; ran it, saw `collected 0 items` / `no tests ran`; told pytest only collects `test_*.py` / `*_test.py`. Forward check (new terminal, no activation, type `pytest`): said correctly it won't find it because it's only installed in `.venv`. Note: an older pytest 9.1.1 also sits in `~/.local` (user install, 2026-10-05); the `platform` line shows which one ran.
+
+## pytest-failure-report
+- status: practicing
+- depends-on: pytest, test-files
+- introduced: 2026-11-02
+- last-reviewed: 2026-11-02
+- evidence: lesson 5.5: said it was new. Drill 1 (scratch/test-files.py): changed `test_fan_num`'s expected value to 3 themselves, ran pytest before predicting, got `.F` / `assert 2 == 3`. Drill 2: broke the function (`< 3000` → `> 3000`), ran before predicting, got `assert 1 == 2`; told the report can't say which side is wrong. Project: chose their own break (`line[1]` in `find_bus_ids`); predicted the left side would still be bus IDs (wrong — `['Host', 'PCI', ..., 'ISA']`, with `At index 0 diff`). Asked why: described what happened (function returned words, test compared) but not the cause; tutor explained `.split()` index 1 = first word of the device type. Restored `line[0]` themselves; `pytest` → 1 passed (ran before predicting). Skipped predictions 3 of 4 times.
 
 ## sample-data
-- status: introduced
-- depends-on: pytest, lspci-output-format
+- status: practicing
+- depends-on: pytest, lspci-output-format, output-redirection
 - introduced: 2026-10-26
-- last-reviewed: 2026-10-26
-- evidence: decision 4 — saving real lspci output to test FAIL paths.
+- last-reviewed: 2026-10-30
+- evidence: decision 4 — saving real lspci output to test FAIL paths. 2026-10-30 (lesson 5.3): ran `mkdir samples` (dictated) and wrote `lspci > samples/lspci_laptop.txt` themselves; predicted 22 lines for `wc -l`, reasoning from lesson 3.2's device count — held. Forward check (re-save on a server with the same filename, then run pytest once a test exists): answered about today's state ("zero pass, no tests yet"), missed that the overwritten input would fail the test; told that a sample file is fixed once a test depends on it, so a new machine gets a new filename.
+
+## output-redirection
+- status: practicing
+- depends-on: terminal-commands
+- introduced: 2026-10-30
+- last-reviewed: 2026-10-30
+- evidence: lesson 5.3: said it was new. Drill 1 (scratch/output-redirection.txt): wrote `ls learning/scratch/ > learning/scratch/output-redirection.txt` + `cat` themselves (ran before predicting); saw the file listed in its own output, told that the shell creates the file before the command runs. Drill 2: predicted correctly that `whoami` into the same file would overwrite the list, leaving only the username. Project: first wrote `lspci > samples/` and got "Is a directory", then fixed it to `samples/lspci_laptop.txt` without help.
 
 ## github-repo
 - status: practicing
@@ -102,11 +116,11 @@
 - evidence: said Git was used long ago, needs relearning. Set global user.name/email/defaultBranch. Ran `git init` in a practice folder and in the project; predicted correctly that all project files would be untracked before `git add`. Renamed `master` → `main` with `git branch -m main`.
 
 ## git-commit
-- status: practicing
+- status: understood
 - depends-on: git-init
 - introduced: 2026-10-26
-- last-reviewed: 2026-10-26
-- evidence: predicted commit would push to GitHub (wrong; corrected: commit is local, push needs a remote). Hit "pathspec" error from missing `-m`, fixed it after a pointer to the example. Made two practice commits, read `git log --oneline`. Chose to commit `learning/` publicly ("people will understand my process"). Made first project commit c2159f5. Forward check: correctly said the commit would be lost if the disk died because it lives only on the laptop. 2026-10-26 (lesson 1.4): staged and committed 4 files as 7fbde41 with their own message ("second commit"; tip given to describe the change). 2026-10-29 (lesson 3.4): unprompted, committed 7 files as 2b5422a with a descriptive message ("print out the component output"), pushed, and showed `git status` as clean. Included `.claude/settings.local.json` without checking what it was.
+- last-reviewed: 2026-11-02
+- evidence: 2026-11-02 review (commit without `git add` while files are untracked/modified): said nothing new goes in because nothing was fed to the "saving stage" — correct. Earlier: predicted commit would push to GitHub (wrong; corrected: commit is local, push needs a remote). Hit "pathspec" error from missing `-m`, fixed it after a pointer to the example. Made two practice commits, read `git log --oneline`. Chose to commit `learning/` publicly ("people will understand my process"). Made first project commit c2159f5. Forward check: correctly said the commit would be lost if the disk died because it lives only on the laptop. 2026-10-26 (lesson 1.4): staged and committed 4 files as 7fbde41 with their own message ("second commit"; tip given to describe the change). 2026-10-29 (lesson 3.4): unprompted, committed 7 files as 2b5422a with a descriptive message ("print out the component output"), pushed, and showed `git status` as clean. Included `.claude/settings.local.json` without checking what it was. 2026-10-29 (lesson 4.4): unprompted, committed section 4 as 750b930 with a descriptive message ("add find bus id function and return the bus id list") and pushed; showed it with `git log --oneline -3`.
 
 ## git-push
 - status: understood
@@ -119,15 +133,15 @@
 - status: practicing
 - depends-on: git-init
 - introduced: 2026-10-26
-- last-reviewed: 2026-10-26
-- evidence: 2026-10-29: pushed 2b5422a to origin on their own (`018dd34..2b5422a main -> main`). Earlier: listed init → add → commit → push without the `git remote add` step. When asked what a push from a fresh repo would do, said Git would read `origin` as master/main (confused remote with branch); corrected. Then ran `git remote add origin ../fake-github.git` and pushed in the drill.
+- last-reviewed: 2026-10-29
+- evidence: 2026-10-29 (lesson 4.4): pushed 750b930. Forward check (commit without push: where do `HEAD -> main` and `origin/main` sit in `git log`?): "not sure"; told that `HEAD -> main` moves to the new commit and `origin/main` stays on 750b930 until the push. Earlier, 2026-10-29: pushed 2b5422a to origin on their own (`018dd34..2b5422a main -> main`). Earlier: listed init → add → commit → push without the `git remote add` step. When asked what a push from a fresh repo would do, said Git would read `origin` as master/main (confused remote with branch); corrected. Then ran `git remote add origin ../fake-github.git` and pushed in the drill.
 
 ## git-status
-- status: introduced
+- status: practicing
 - depends-on: git-commit
 - introduced: 2026-10-26
-- last-reviewed: 2026-10-26
-- evidence: predicted every tracked file would show as modified (wrong); then guessed project.md was missing because it is "hidden" (wrong). Corrected: modified = changed since last commit.
+- last-reviewed: 2026-10-29
+- evidence: 2026-10-29 (lesson 4.4): predicted correctly that the three new drill files would show as untracked; did not mention the modified files. Ran `git status` themselves and pasted "nothing to commit, working tree clean" after committing. Earlier: predicted every tracked file would show as modified (wrong); then guessed project.md was missing because it is "hidden" (wrong). Corrected: modified = changed since last commit.
 
 ## variables
 - status: understood
@@ -165,11 +179,11 @@
 - evidence: said it was new. Drill 1 (scratch/main-guard.py): first printed `"__name__"` in quotes (text, not the value); then assigned `__name__="nvme"` and saw the guard go false — could not say why, walked through it. Fixed it; predicted `__name__` + "Fan check" correctly. Drill 2 (fan_tools.py + run_fans.py): predicted `__main__` + "Fan check" on import (wrong, got `fan_tools`); then explained in own words: imported, not run directly, so `__name__` isn't `__main__` and the function isn't called. Project: wrapped `main()` in `if __name__ == "__main__":` themselves; predicted correctly that `import pcie_check` prints nothing.
 
 ## gitignore
-- status: introduced
+- status: practicing
 - depends-on: git-status
 - introduced: 2026-10-27
-- last-reviewed: 2026-10-27
-- evidence: tutor dictated `.gitignore` with `__pycache__/`; learner created it and saw both `__pycache__/` folders drop out of `git status`.
+- last-reviewed: 2026-10-30
+- evidence: 2026-10-30 (lesson 5.1): ran `git status` before predicting, saw `.venv/` untracked; added `.venv` to `.gitignore` themselves (asked only "in the same style") and reported `.venv` gone from untracked. Earlier: tutor dictated `.gitignore` with `__pycache__/`; learner created it and saw both `__pycache__/` folders drop out of `git status`.
 
 ## stdout-stderr
 - status: introduced
@@ -204,7 +218,7 @@
 - depends-on: strings, lists
 - introduced: 2026-10-29
 - last-reviewed: 2026-10-29
-- evidence: lesson 3.2: tutor named `.splitlines()` (cuts text at line breaks, returns a list); learner used it on `command.stdout`. Lesson 4.1 (2026-10-29): said they had used `.split()` "before but not much". Drill (scratch/splitting-strings.py): split `"Fan2 RPM 5400 ok"` with `.split(" ")`, printed `len(...)` and `[2]`; predicted 4 and the index-2 item correctly. Project: wrote `split_device = c.split()` + `print(split_device[0])` themselves; predicted correctly that `bridge` prints the 5 bus IDs. Forward check (`[1]` on `00:00.0 Host bridge: ...`): said "the next item, the other part" — right idea, not specific; told it is just `Host` because split cuts at every space. Typed under the TODO marker again instead of replacing it.
+- evidence: lesson 3.2: tutor named `.splitlines()` (cuts text at line breaks, returns a list); learner used it on `command.stdout`. Lesson 4.1 (2026-10-29): said they had used `.split()` "before but not much". Drill (scratch/splitting-strings.py): split `"Fan2 RPM 5400 ok"` with `.split(" ")`, printed `len(...)` and `[2]`; predicted 4 and the index-2 item correctly. Project: wrote `split_device = c.split()` + `print(split_device[0])` themselves; predicted correctly that `bridge` prints the 5 bus IDs. Forward check (`[1]` on `00:00.0 Host bridge: ...`): said "the next item, the other part" — right idea, not specific; told it is just `Host` because split cuts at every space. Typed under the TODO marker again instead of replacing it. 2026-11-02 (lesson 5.5): broke `find_bus_ids` with `line[1]` and still predicted bus IDs; the result (`Host`, `PCI`, `ISA`) showed index 1 is the first word of the device type — explained by the tutor.
 
 ## building-lists
 - status: understood
@@ -221,18 +235,39 @@
 - evidence: self-reported prior knowledge ("I used the return in a function before"). Asked for a clearer drill spec. Drill (scratch/return-values.py): `link_width(current, max)` returns the percentage, caller stores and prints it; predicted `50.0 %` exactly. Lesson 4.3: wrote the body of `find_bus_ids(component, lines)` (moved the loop, switched to `lines`, `return bus_ID`) and the call `bus_ID = find_bus_ids(args.component.lower(), devices)` themselves; typed under the second TODO marker and deleted the two prints, fixed both when pointed out. Predicted the unchanged `bridge` output (5 IDs, 5) correctly. Forward check (delete `return`): said everything shows None. Half right: `bus_ID` is None and prints None, but `len(None)` crashes with TypeError (shown). Note: the function only lowercases the line side; it relies on the caller lowercasing `component`.
 
 ## virtual-environment
-- status: seed
+- status: practicing
 - depends-on: running-a-python-script
-- introduced: —
-- last-reviewed: —
-- evidence: —
+- introduced: 2026-10-30
+- last-reviewed: 2026-10-30
+- evidence: 2026-10-30 (lesson 5.2): drill (scratch/pip-install.py): predicted `/usr/bin/python3` would find the same pip as the venv (wrong — `/usr/lib/python3/dist-packages`); then said `python` uses `.venv` and `python3` the system (half: it's which Python runs, not the name — `.venv/bin/python3` exists too). Forward check correct: a fresh terminal without activation can't see the venv's pytest. Lesson 5.1: said it was new. Drill 1 (scratch/virtual-environment.py): first printed `sys.version`, then `sys.path`, then `sys.executable`; predicted `/bin/python3` correctly. Drill 2 (scratch/venv-home.py): printed `sys.prefix` / `sys.base_prefix` (no labels); predicted both `/usr` outside a venv correctly. Project: ran `python3 -m venv .venv`, listed `.venv` and `.venv/bin`, activated it. Predicted the drill wouldn't run because the file is "outside the box" (wrong — venv isolates Python and packages, not your files). Predicted both prefixes stay `/usr` inside the venv (half: prefix moved to `.venv`); then explained in own words: prefix = from `.venv`, base_prefix = from the laptop. Forward check (new terminal, run `python ...`): said it prints the `.venv` path (wrong — activation is per terminal; plain `python` doesn't exist outside the venv on this laptop).
+
+## pip-install
+- status: understood
+- depends-on: virtual-environment
+- introduced: 2026-10-30
+- last-reviewed: 2026-10-30
+- evidence: self-reported prior knowledge ("i used it before"). Drill (scratch/pip-install.py): wrote `import pip` + `print(pip.__file__)` correctly, ran it in the venv themselves. Lesson 5.2: ran `pip install pytest` in the active venv and pasted the result.
+
+## python-sys-module
+- status: introduced
+- depends-on: standard-library
+- introduced: 2026-10-30
+- last-reviewed: 2026-10-30
+- evidence: lesson 5.1: tutor named `sys.executable`, `sys.version`, `sys.prefix`, `sys.base_prefix`; learner found `sys.path` on their own and used the others in drills.
 
 ## test-files
-- status: seed
+- status: practicing
 - depends-on: pytest
-- introduced: —
-- last-reviewed: —
-- evidence: —
+- introduced: 2026-10-30
+- last-reviewed: 2026-10-30
+- evidence: lesson 5.4: said it was new. Drill 1 (scratch/test-files.py): wrote `component_value()` returning 4000 + `test_fan_rpm` with `assert ... == 4000` themselves; ran pytest before predicting, 1 passed. Drill 2: wrote `fan_speed_list(fan_list)` (counts speeds < 3000) + `test_fan_num` with a made-up list, asserting 2; skipped the prediction; 2 passed. Project (test_pcie_check.py): first asserted only `len(find_bus_ids("bridge", devices)) == 5`; said correctly that it would not catch a `line[1]` bug. Then built the expected list by re-running the same loop as `find_bus_ids`; when asked what that means, answered off the point ("I can design what the output looks like"); tutor explained that the expected answer must come from outside the code. Then typed the five bridge IDs by hand from the sample; `pytest test_pcie_check.py` → 1 passed. Typed under the TODO marker again. Reads the sample at module level, outside the test function.
+
+## reading-files
+- status: practicing
+- depends-on: strings, lists
+- introduced: 2026-10-30
+- last-reviewed: 2026-10-30
+- evidence: lesson 5.4: said it was new. Drill 1 (scratch/reading-files.py + temps.txt): wrote `with open("learning/scratch/temps.txt") as f:` + `f.read()` with the correct project-root path; ran it before predicting and asked why `len(temp)` gave 21, not 3; told `len` on a string counts characters; fixed it to `len(temp.splitlines())` → 3 themselves. Drill 2: printed only sensor names using `.split()` + `isalpha()` (own approach, works for these names, misses names with digits); predicted "a new list with only the names" correctly. Project: read samples/lspci_laptop.txt and split it into lines themselves.
 
 ## lspci-output-format
 - status: seed
