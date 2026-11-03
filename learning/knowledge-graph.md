@@ -7,15 +7,15 @@
 - status: practicing
 - depends-on: none
 - introduced: 2026-10-16
-- last-reviewed: 2026-10-26
-- evidence: uses `lspci`, `grep`, pipes and `dmesg` daily at work. 2026-10-26 review: correctly said `grep nvme` without `-i` finds nothing because NVMe is uppercase. Used `mv`, `cd`, `cd ..` correctly.
+- last-reviewed: 2026-11-02
+- evidence: 2026-11-02 review (show only LnkSta for 00:1c.0): answered `lspci -s 00:1c -vv | grep -i lnksta` — correct; told that leaving off `.0` matches every function of the device. Lesson 6.1: used `sudo chown user:group` (dictated) to take back a file made in a root shell. Uses `lspci`, `grep`, pipes and `dmesg` daily at work. 2026-10-26 review: correctly said `grep nvme` without `-i` finds nothing because NVMe is uppercase. Used `mv`, `cd`, `cd ..` correctly.
 
 ## pcie-link-status
-- status: introduced
+- status: practicing
 - depends-on: terminal-commands
 - introduced: 2026-10-16
-- last-reviewed: 2026-10-16
-- evidence: explained on their own that `(ok)` next to Speed = pass, otherwise downgraded. Width downgrade not yet discussed by them.
+- last-reviewed: 2026-11-02
+- evidence: explained on their own that `(ok)` next to Speed = pass, otherwise downgraded. Width downgrade not yet discussed by them. 2026-11-02 (lesson 6.1): compared LnkCap and LnkSta on 00:1c.0 and reported they match (5GT/s, x1). Predicted correctly that 02:00.0's LnkSta would show `(ok)` on both Speed and Width.
 
 ## language-choice-python
 - status: introduced
@@ -95,11 +95,11 @@
 - evidence: checked servers, oldest is Python 3.9. Told 3.10+ features (e.g. `match`) won't run. Note: laptop has Python 3.10.12 — newer than servers; handle in section 5 (venv) / section 8.
 
 ## lspci-root-access
-- status: introduced
+- status: practicing
 - depends-on: lspci-output-format
 - introduced: 2026-10-26
-- last-reviewed: 2026-10-26
-- evidence: told that non-root `lspci -vv` shows `<access denied>` and no LnkSta. Needs a real saved sample.
+- last-reviewed: 2026-11-02
+- evidence: told that non-root `lspci -vv` shows `<access denied>` and no LnkSta. Needs a real saved sample. 2026-11-02 (lesson 6.1): asked what "without root" means (told: root = admin account, `sudo` runs one command as root). Ran `lspci -s 2:00.0 -vv` without sudo (called it "the output with root") and noted on their own that there is no LnkCap or LnkSta; tutor pointed to `Capabilities: <access denied>` replacing every capability section. Not saved to a file yet. Worked in a root shell; a file made there was owned by root.
 
 ## running-a-python-script
 - status: practicing
@@ -270,11 +270,11 @@
 - evidence: lesson 5.4: said it was new. Drill 1 (scratch/reading-files.py + temps.txt): wrote `with open("learning/scratch/temps.txt") as f:` + `f.read()` with the correct project-root path; ran it before predicting and asked why `len(temp)` gave 21, not 3; told `len` on a string counts characters; fixed it to `len(temp.splitlines())` → 3 themselves. Drill 2: printed only sensor names using `.split()` + `isalpha()` (own approach, works for these names, misses names with digits); predicted "a new list with only the names" correctly. Project: read samples/lspci_laptop.txt and split it into lines themselves.
 
 ## lspci-output-format
-- status: seed
+- status: practicing
 - depends-on: terminal-commands, pcie-link-status
-- introduced: —
-- last-reviewed: —
-- evidence: —
+- introduced: 2026-11-02
+- last-reviewed: 2026-11-02
+- evidence: lesson 6.1: said they only ever read LnkSta, never the full block. Tutor explained: header line, indented block, Capabilities sections, LnkCap vs LnkSta inside Express. Drill 1 (scratch/lspci-output-format.txt): saved `-vv` of 00:1c.0 as root, ran before predicting, pasted LnkCap/LnkSta (including continuation lines). Told: verdict is on the `LnkSta:` line, the indented next line belongs to it; `LnkSta2` also contains "LnkSta", so the script must match `LnkSta:` with the colon. Project: first printed 02:00.0's `-vv` to screen only, then saved it to the project root, then moved it into samples/ (lspci_0200_output.txt).
 
 ## substring-search
 - status: practicing
@@ -291,18 +291,18 @@
 - evidence: lesson 3.3: tutor dictated a one-line `if` (glossed: runs the indented lines only when true); learner indented the `print` under it correctly. Not taught yet; section 6.
 
 ## booleans
-- status: seed
+- status: introduced
 - depends-on: variables
-- introduced: —
-- last-reviewed: —
-- evidence: —
+- introduced: 2026-11-02
+- last-reviewed: 2026-11-02
+- evidence: lesson 6.2 (in progress): said it was new. Drill 1 (scratch/booleans.py): wrote `link_speed_check(lspeed)` with if/else; predicted "8 fail, 16 pass" (held). First used `== 16`; asked about 32, said on their own that it fails every case except exactly 16, and fixed it to `>=`. Ran before predicting the 32 call. Rewrote it as `return lspeed >= 16` after being shown the shortcut. Drill 2 (unfinished): `link_width_check(cap, sta)` should return True when the LnkSta width is narrower than the LnkCap width. Kept comparing each input to fixed numbers (`>= 16 and >= 4`, then `<= 16 and <= 4`, then 16/4 stored in variables). Explained `and` correctly in own words. Read `True` as "pass" rather than "yes to the function's question" (here, "narrower?"). Said they had been picturing a check against a fixed spec; then asked on their own whether the right check is current width vs LnkCap — yes. Shown a firmware example comparing two parameters. Paused mid-drill 2 to move to the home PC.
 
 ## f-strings
 - status: practicing
 - depends-on: strings
 - introduced: 2026-10-26
-- last-reviewed: 2026-10-26
-- evidence: wrote `print(f"Checking: {...}")` unprompted in lesson 2.1, ahead of section 7; worked first time.
+- last-reviewed: 2026-11-02
+- evidence: 2026-11-02 review (drop the `f` from the Checking line): said the value inside the curly brackets would not print. Right idea; told the braces and the code inside them print as plain text. Earlier: wrote `print(f"Checking: {...}")` unprompted in lesson 2.1, ahead of section 7; worked first time.
 
 ## exit-codes
 - status: seed

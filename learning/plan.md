@@ -53,6 +53,11 @@
 ### 6. Reading link status  [ ] not started
 **Deliverable:** each device prints PASS or FAIL, including width-only downgrades, with tests for the five sample cases.
 **Concepts:** lspci-output-format, substring-search, if-else, booleans, pcie-link-status
+- [x] 6.1 lspci output format: run `sudo lspci -vv -s <bus ID>` on one device, find its `LnkCap` and `LnkSta` lines, and save the output as a healthy sample in `samples/`
+- [ ] 6.2 booleans: a function takes one `LnkSta` line and returns `True` when nothing on it says downgraded, `False` otherwise; tested on a healthy and a speed-downgraded line (in progress: paused mid-drill 2 in `learning/scratch/booleans.py`)
+- [ ] 6.3 if-else: for each bus ID, the script runs `lspci -vv -s <bus ID>`, finds the `LnkSta` line, and prints the bus ID with PASS or FAIL
+- [ ] 6.4 edge cases: a width-only downgrade prints FAIL, and a device with no `LnkSta` line (not root) never prints PASS
+- [ ] 6.5 tests for the five sample cases, all green; commit and push section 6
 
 ### 7. Summary and safety rails  [ ] not started
 **Deliverable:** summary line like `1 of 4 FAILED: 3b:00.0`, plus loud errors for no match, not root, or lspci missing.
